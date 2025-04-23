@@ -11,14 +11,14 @@
 
 <div class="image-grid" id="card-home">
   <!-- 카드 12개 -->
-  f  <div class="card-container" id="slot-imgi" draggable="true" ondragstart="drag(event)">
+   <div class="card-container" id="slot-imgi" draggable="true" ondragstart="drag(event)">
     <img id="imgi" src="str(i).zfill(3).png" alt="카드i">
     <button class="remove-btn" onclick="returnToOriginal('slot-imgi')">X</button>
-  </div>''' for i in range(1, 13)
+  </div>
 </div>
 
 <div class="card-slot-zone">
-  '<div class="card-slot" ondragover="allowDrop(event)" ondrop="drop(event)"></div>' for _ in range(6)
+  <div class="card-slot" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
 </div>
 
 <div class="save-button-container">
