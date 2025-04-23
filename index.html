@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>반응형 카드 드래그 & X버튼 복귀</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body 
+      margin: 0;
+      padding: 0;
+    
+
+    .save-button-container button 
+      width: 90%;
+      max-width: 300px;
+    
+  </style>
+</head>
+<body>
+
+<div class="image-grid" id="card-home">
+  <!-- 카드 12개 -->
+  f  <div class="card-container" id="slot-imgi" draggable="true" ondragstart="drag(event)">
+    <img id="imgi" src="str(i).zfill(3).png" alt="카드i">
+    <button class="remove-btn" onclick="returnToOriginal('slot-imgi')">X</button>
+  </div>''' for i in range(1, 13)
+</div>
+
+<div class="card-slot-zone">
+  '<div class="card-slot" ondragover="allowDrop(event)" ondrop="drop(event)"></div>' for _ in range(6)
+</div>
+
+<div class="save-button-container">
+  <button onclick="saveCardToSheet()">💾 Google 시트에 저장</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
