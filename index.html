@@ -1,30 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>반응형 카드 드래그 & X버튼 복귀</title>
+  <meta charset="UTF-8">
+  <title>카드</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main>
+<!-- 카드 
+<div id="cardGrid">
+    <div class="card-container" draggable="true" data-id="r"><img class="card" img src="001.png" alt="레드"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="o"><img class="card" img src="002.png" alt="오렌지"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="ro"><img class="card" img src="003.png" alt="레드오렌지"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="y"><img class="card" img src="004.png" alt="옐로우"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="yg"><img class="card" img src="005.png" alt="옐로우그린"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="g"><img class="card" img src="006.png" alt="그린"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="b"><img class="card" img src="007.png " alt="블루"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="i"><img class="card" img src="008.png" alt="인디고"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="p"><img class="card" img src="009.png" alt="퍼플"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="m"><img class="card" img src="010.png" alt="마젠타"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="bg"><img class="card" img src="011.png" alt="블루그린"><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="tz"><img class="card" img src="012.png" alt="더콰이즈"><button class="remove-btn">❌</button></div>
+</div>-->
 
-<div class="image-grid" id="card-home">
-  <!-- 카드 12개 -->
-   <div class="card-container" id="slot-imgi" draggable="true" ondragstart="drag(event)">
-    <img id="imgi" src="str(i).zfill(3).png" alt="카드i">
-    <button class="remove-btn" onclick="returnToOriginal('slot-imgi')">X</button>
+<div id="cardGrid">
+    <div class="card-container" draggable="true" data-id="r"><img src="001.png" alt="레드" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="o"><img src="002.png" alt="오렌지" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="ro"><img src="003.png" alt="레드오렌지" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="y"><img src="004.png" alt="옐로우" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="yg"><img src="005.png" alt="옐로우그린" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="g"><img src="006.png" alt="그린" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="b"><img src="007.png" alt="블루" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="i"><img src="008.png" alt="인디고" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="p"><img src="009.png" alt="포플" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="m"><img src="010.png" alt="마젠타" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="bg"><img src="011.png" alt="블루그린" /><button class="remove-btn">❌</button></div>
+    <div class="card-container" draggable="true" data-id="tz"><img src="012.png" alt="더콰이즈" /><button class="remove-btn">❌</button></div>
   </div>
-</div>
 
-<div class="card-slot-zone">
-  <div class="card-slot" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-</div>
+  <!-- 카드 슬롯 -->
+  <div id="cardSlots">
+    <div class="slot" data-slot="1"></div>
+    <div class="slot" data-slot="2"></div>
+    <div class="slot" data-slot="3"></div>
+    <div class="slot" data-slot="4"></div>
+    <div class="slot" data-slot="5"></div>
+    <div class="slot" data-slot="6"></div>
+    <div class="slot" data-slot="7"></div>
+    <div class="slot" data-slot="8"></div>
+    <div class="slot" data-slot="9"></div>
+    <div class="slot" data-slot="10"></div>
+    <div class="slot" data-slot="11"></div>
+    <div class="slot" data-slot="12"></div>
+  </div>
 
-<div class="save-button-container">
-  <button onclick="saveCardToSheet()">💾 Google 시트에 저장</button>
-</div>
-
-<script src="script.js"></script>
+  <!-- 다음 버튼 -->
+  <div class="button-container">
+    <button id="nextButton">다음</button>
+  </div>
+  <div id="orderDisplay"></div>
+  
+  </main>
+  <!--<script src="script3.js"></script>-->
+  <script src="script.js"></script>
 </body>
 </html>
+

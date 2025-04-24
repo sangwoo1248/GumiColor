@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자 정보 입력</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>정보 입력</h2>
+    <form id="userInfoForm">
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">전화번호</label>
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678">
+
+      <label for="address">주소</label>
+      <input type="text" id="address" name="address" required>
+
+      <button type="submit">제출하기</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('userInfoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+
+      const data = {
+        name,
+        phone,
+        address
+      };
+
+      // 예시: Google Apps Script로 전송
+      fetch('https://script.google.com/macros/s/🔑YOUR_SCRIPT_ID/exec', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(res => {
+        alert('제출되었습니다!');
+        console.log(res);
+        // window.location.href = "complete.html"; // 제출 후 이동하고 싶다면 여기에 작성
+      })
+      .catch(err => {
+        console.error('전송 실패:', err);
+        alert('제출에 실패했습니다.');
+      });
+    });
+  </script>
+
+</body>
+</html>
