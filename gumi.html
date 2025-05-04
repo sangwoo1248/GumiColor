@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gumi Color</title>
+  <link rel="stylesheet" href="gumi.css">
+</head>
+<body>
+
+    <!-- 카드 -->
+    <div class="background">
+      <div class="cards">
+        <img src="Img/001.png" class="card" id="card1" draggable="true">
+        <img src="Img/002.png" class="card" id="card2" draggable="true">
+        <img src="Img/003.png" class="card" id="card3" draggable="true">
+        <img src="Img/004.png" class="card" id="card4" draggable="true">
+        <img src="Img/005.png" class="card" id="card5" draggable="true">
+        <img src="Img/006.png" class="card" id="card6" draggable="true">
+        <img src="Img/007.png" class="card" id="card7" draggable="true">
+        <img src="Img/008.png" class="card" id="card8" draggable="true">
+        <img src="Img/009.png" class="card" id="card9" draggable="true">
+        <img src="Img/010.png" class="card" id="card10" draggable="true">
+        <img src="Img/011.png" class="card" id="card11" draggable="true">
+        <img src="Img/012.png" class="card" id="card12" draggable="true">
+      </div>
+  
+      <div class="slots">
+        <!-- Repeat for 12 slots with matched data-accept -->
+        <div class="slot" id="slot1" data-accept="card1"><span class="slot-number">1</span><span class="remove">X</span></div>
+        <div class="slot" id="slot2" data-accept="card2"><span class="slot-number">2</span><span class="remove">X</span></div>
+        <div class="slot" id="slot3" data-accept="card3"><span class="slot-number">3</span><span class="remove">X</span></div>
+        <div class="slot" id="slot4" data-accept="card4"><span class="slot-number">4</span><span class="remove">X</span></div>
+        <div class="slot" id="slot5" data-accept="card5"><span class="slot-number">5</span><span class="remove">X</span></div>
+        <div class="slot" id="slot6" data-accept="card6"><span class="slot-number">6</span><span class="remove">X</span></div>
+        <div class="slot" id="slot7" data-accept="card7"><span class="slot-number">7</span><span class="remove">X</span></div>
+        <div class="slot" id="slot8" data-accept="card8"><span class="slot-number">8</span><span class="remove">X</span></div>
+        <div class="slot" id="slot9" data-accept="card9"><span class="slot-number">9</span><span class="remove">X</span></div>
+        <div class="slot" id="slot10" data-accept="card10"><span class="slot-number">10</span><span class="remove">X</span></div>
+        <div class="slot" id="slot11" data-accept="card11"><span class="slot-number">11</span><span class="remove">X</span></div>
+        <div class="slot" id="slot12" data-accept="card12"><span class="slot-number">12</span><span class="remove">X</span></div>
+      </div>
+  
+      <!-- 리셋 -->
+      <button id="resetBtn">Reset</button>
+      <!-- 리셋(모바일) -->
+      <button id="autoBtn" class="mobile-only">자동 배치</button>
+    </div>
+
+  <script src="gumi.js"></script>
+</body>
+</html>
+
