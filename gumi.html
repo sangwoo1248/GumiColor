@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gumi Color</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구미 컬러</title>
   <link rel="stylesheet" href="gumi.css">
 </head>
-<body>
 
+<body>
+  <div class="container">
     <!-- 카드 -->
-    <div class="background">
-      <div class="cards">
-        <img src="Img/001.png" class="card" id="card1" draggable="true">
-        <img src="Img/002.png" class="card" id="card2" draggable="true">
-        <img src="Img/003.png" class="card" id="card3" draggable="true">
-        <img src="Img/004.png" class="card" id="card4" draggable="true">
-        <img src="Img/005.png" class="card" id="card5" draggable="true">
-        <img src="Img/006.png" class="card" id="card6" draggable="true">
-        <img src="Img/007.png" class="card" id="card7" draggable="true">
-        <img src="Img/008.png" class="card" id="card8" draggable="true">
-        <img src="Img/009.png" class="card" id="card9" draggable="true">
-        <img src="Img/010.png" class="card" id="card10" draggable="true">
-        <img src="Img/011.png" class="card" id="card11" draggable="true">
-        <img src="Img/012.png" class="card" id="card12" draggable="true">
-      </div>
-  
-      <div class="slots">
-        <!-- Repeat for 12 slots with matched data-accept -->
-        <div class="slot" id="slot1" data-accept="card1"><span class="slot-number">1</span><span class="remove">X</span></div>
-        <div class="slot" id="slot2" data-accept="card2"><span class="slot-number">2</span><span class="remove">X</span></div>
-        <div class="slot" id="slot3" data-accept="card3"><span class="slot-number">3</span><span class="remove">X</span></div>
-        <div class="slot" id="slot4" data-accept="card4"><span class="slot-number">4</span><span class="remove">X</span></div>
-        <div class="slot" id="slot5" data-accept="card5"><span class="slot-number">5</span><span class="remove">X</span></div>
-        <div class="slot" id="slot6" data-accept="card6"><span class="slot-number">6</span><span class="remove">X</span></div>
-        <div class="slot" id="slot7" data-accept="card7"><span class="slot-number">7</span><span class="remove">X</span></div>
-        <div class="slot" id="slot8" data-accept="card8"><span class="slot-number">8</span><span class="remove">X</span></div>
-        <div class="slot" id="slot9" data-accept="card9"><span class="slot-number">9</span><span class="remove">X</span></div>
-        <div class="slot" id="slot10" data-accept="card10"><span class="slot-number">10</span><span class="remove">X</span></div>
-        <div class="slot" id="slot11" data-accept="card11"><span class="slot-number">11</span><span class="remove">X</span></div>
-        <div class="slot" id="slot12" data-accept="card12"><span class="slot-number">12</span><span class="remove">X</span></div>
-      </div>
-  
-      <!-- 리셋 -->
-      <button id="resetBtn">Reset</button>
-      <!-- 리셋(모바일) -->
-      <button id="autoBtn" class="mobile-only">자동 배치</button>
+    <div class="card-container">
+      <div class="card" draggable="true" data-card-number="1"><img src="Img/001.png" alt="Card1"></div>
+      <div class="card" draggable="true" data-card-number="2"><img src="Img/002.png" alt="Card2"></div>
+      <div class="card" draggable="true" data-card-number="3"><img src="Img/003.png" alt="Card3"></div>
+      <div class="card" draggable="true" data-card-number="4"><img src="Img/004.png" alt="Card4"></div>
+      <div class="card" draggable="true" data-card-number="5"><img src="Img/005.png" alt="Card5"></div>
+      <div class="card" draggable="true" data-card-number="6"><img src="Img/006.png" alt="Card6"></div>
+      <div class="card" draggable="true" data-card-number="7"><img src="Img/007.png" alt="Card7"></div>
+      <div class="card" draggable="true" data-card-number="8"><img src="Img/008.png" alt="Card8"></div>
+      <div class="card" draggable="true" data-card-number="9"><img src="Img/009.png" alt="Card9"></div>
+      <div class="card" draggable="true" data-card-number="10"><img src="Img/010.png" alt="Card10"></div>
+      <div class="card" draggable="true" data-card-number="11"><img src="Img/011.png" alt="Card11"></div>
+      <div class="card" draggable="true" data-card-number="12"><img src="Img/012.png" alt="Card12"></div>
     </div>
 
+    <!-- 슬롯 -->
+    <div class="slot-container">
+      <div class="slot" data-slot-number="1"><img src="Img/select.png" /><div class="slot-number">1</div></div>
+      <div class="slot" data-slot-number="2"><img src="Img/select.png" /><div class="slot-number">2</div></div>
+      <div class="slot" data-slot-number="3"><img src="Img/select.png" /><div class="slot-number">3</div></div>
+      <div class="slot" data-slot-number="4"><img src="Img/select.png" /><div class="slot-number">4</div></div>
+      <div class="slot" data-slot-number="5"><img src="Img/select.png" /><div class="slot-number">5</div></div>
+      <div class="slot" data-slot-number="6"><img src="Img/select.png" /><div class="slot-number">6</div></div>
+      <div class="slot" data-slot-number="7"><img src="Img/select.png" /><div class="slot-number">7</div></div>
+      <div class="slot" data-slot-number="8"><img src="Img/select.png" /><div class="slot-number">8</div></div>
+      <div class="slot" data-slot-number="9"><img src="Img/select.png" /><div class="slot-number">9</div></div>
+      <div class="slot" data-slot-number="10"><img src="Img/select.png" /><div class="slot-number">10</div></div>
+      <div class="slot" data-slot-number="11"><img src="Img/select.png" /><div class="slot-number">11</div></div>
+      <div class="slot" data-slot-number="12"><img src="Img/select.png" /><div class="slot-number">12</div></div>
+      
+    </div>
+
+    <button class="reset-btn" onclick="resetAll()">
+      <img src="Img/reset.png" alt="Reset" style="height: 40px;">
+    </button>
+    <button class="save-btn" onclick="">
+      <img src="Img/save.png" alt="Save" style="height: 40px;">
+    </button>
+      <!--모바일-->
+      <!--<button id="autoPlace">자동배치</button>-->
+  </div>
+
   <script src="gumi.js"></script>
+
 </body>
 </html>
 

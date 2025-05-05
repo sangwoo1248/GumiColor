@@ -1,91 +1,136 @@
-let draggedCard = null;
+/*let draggedCard = null;
+const cardContainer = document.getElementById('cardContainer');
+const slotContainer = document.getElementById('slotContainer');
 
-document.querySelectorAll('.card').forEach((card) => {
-  card.addEventListener('dragstart', () => {
+// 카드 드래그 이벤트
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('dragstart', e => {
     draggedCard = card;
+    setTimeout(() => card.style.display = 'none', 0);
+  });
+
+  card.addEventListener('dragend', e => {
+    draggedCard.style.display = 'block';
+    draggedCard = null;
   });
 });
 
-document.querySelectorAll('.slot').forEach((slot, index) => {
-  slot.addEventListener('dragover', (e) => {
+// 슬롯
+document.querySelectorAll('.slot').forEach(slot => {
+  slot.addEventListener('dragover', e => {
     e.preventDefault();
   });
 
-  slot.addEventListener('drop', () => {
-    if (!slot.classList.contains('filled') && draggedCard.dataset.cardIndex == index + 1) {
-      slot.innerHTML = '';
-      const clone = draggedCard.cloneNode(true);
-      clone.draggable = false;
-      clone.style.width = '100%';
-      clone.style.height = '100%';
+  slot.addEventListener('drop', e => {
+    if (!draggedCard) return;
+    if (slot.querySelector('.card')) return;
 
-      const xBtn = document.createElement('button');
-      xBtn.className = 'x-btn';
-      xBtn.innerText = 'X';
-      xBtn.addEventListener('click', () => {
-        slot.innerHTML = `<div class="slot-number">${index + 1}</div>`;
-        slot.classList.remove('filled');
-        document.querySelector('.card-container').appendChild(draggedCard);
-      });
+    slot.appendChild(draggedCard);
+    draggedCard.style.position = 'absolute';
+    draggedCard.style.top = '0';
+    draggedCard.style.left = '0';
+    draggedCard.style.width = '100%';
+    draggedCard.style.height = '100%';
 
-      slot.appendChild(clone);
-      slot.appendChild(xBtn);
-      slot.classList.add('filled');
-      draggedCard.remove();
-    }
+    const xBtn = document.createElement('button');
+    xBtn.innerText = 'X';
+    xBtn.className = 'x-btn';
+    xBtn.onclick = () => {
+      cardContainer.appendChild(draggedCard);
+      xBtn.remove();
+    };
+    slot.appendChild(xBtn);
   });
 });
 
-document.getElementById('resetBtn').addEventListener('click', () => {
-  const cardContainer = document.querySelector('.card-container');
-  cardContainer.innerHTML = '';
-  for (let i = 1; i <= 12; i++) {
-    const card = document.createElement('img');
-    card.src = `img/card${i}.png`;
+// 리셋 기능
+function resetAll() {
+  document.querySelectorAll('.slot .card').forEach(card => {
+    card.removeAttribute('style');
     card.className = 'card';
-    card.setAttribute('draggable', true);
-    card.setAttribute('data-card-index', i);
-
-    card.addEventListener('dragstart', () => {
-      draggedCard = card;
-    });
-
     cardContainer.appendChild(card);
+  });
+  document.querySelectorAll('.x-btn').forEach(btn => btn.remove());
+}*/
+
+const cards = document.querySelectorAll('.card');
+const slots = document.querySelectorAll('.slot');
+const cardContainer = document.querySelector('.card-container');
+
+let draggedCard = null;
+
+cards.forEach(card => {
+  card.setAttribute('draggable', 'true');
+  card.addEventListener('dragstart', handleDragStart);
+  card.addEventListener('dragend', handleDragEnd);
+});
+
+slots.forEach(slot => {
+  slot.addEventListener('dragover', e => e.preventDefault());
+  slot.addEventListener('dragenter', handleDragEnter);
+  slot.addEventListener('dragleave', handleDragLeave);
+  slot.addEventListener('drop', handleDrop);
+});
+
+function handleDragStart() {
+  draggedCard = this;
+  setTimeout(() => (this.style.display = 'none'), 0);
+}
+
+function handleDragEnd() {
+  this.style.display = 'flex';
+  draggedCard = null;
+}
+
+function handleDragEnter() {
+  this.style.backgroundColor = '#d0f0ff';
+}
+
+function handleDragLeave() {
+  this.style.backgroundColor = '#f9f9f9';
+}
+
+function handleDrop() {
+  if (!draggedCard) return;
+
+  const cardNumber = draggedCard.dataset.cardNumber;
+  const slotNumber = this.dataset.slotNumber;
+
+  if (cardNumber !== slotNumber || this.querySelector('.card')) {
+    this.style.backgroundColor = '#f9f9f9';
+    return;
   }
 
-  document.querySelectorAll('.slot').forEach((slot, i) => {
-    slot.innerHTML = `<div class="slot-number">${i + 1}</div>`;
-    slot.classList.remove('filled');
-  });
-});
+  this.appendChild(draggedCard);
+  this.style.backgroundColor = '#f9f9f9';
+  attachRemoveButton(this, draggedCard);
+}
 
-document.getElementById('autoBtn').addEventListener('click', () => {
-  document.getElementById('resetBtn').click();
-  const cards = document.querySelectorAll('.card');
-  const slots = document.querySelectorAll('.slot');
+function attachRemoveButton(slot, card) {
+  removeRemoveButton(slot);
 
-  cards.forEach((card, i) => {
-    if (i < slots.length) {
-      const slot = slots[i];
-      slot.innerHTML = '';
-      const clone = card.cloneNode(true);
-      clone.draggable = false;
-      clone.style.width = '100%';
-      clone.style.height = '100%';
+  const btn = document.createElement('button');
+  btn.textContent = '×';
+  btn.className = 'x-btn';
+  btn.onclick = () => moveCardBack(card, btn);
 
-      const xBtn = document.createElement('button');
-      xBtn.className = 'x-btn';
-      xBtn.innerText = 'X';
-      xBtn.addEventListener('click', () => {
-        slot.innerHTML = `<div class="slot-number">${i + 1}</div>`;
-        slot.classList.remove('filled');
-        document.querySelector('.card-container').appendChild(card);
-      });
+  slot.appendChild(btn);
+}
 
-      slot.appendChild(clone);
-      slot.appendChild(xBtn);
-      slot.classList.add('filled');
-      card.remove();
-    }
-  });
-});
+function removeRemoveButton(slot) {
+  const existingBtn = slot.querySelector('.x-btn');
+  if (existingBtn) existingBtn.remove();
+}
+
+function moveCardBack(card, btn) {
+  card.removeAttribute('style');
+  card.className = 'card';
+  card.setAttribute('draggable', 'true');
+  cardContainer.appendChild(card);
+  btn.remove();
+}
+
+// 리셋 기능
+function resetAll() {
+  document.querySelectorAll('.slot .card').forEach(card => moveCardBack(card, card.parentElement.querySelector('.x-btn')));
+}

@@ -1,102 +1,113 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: url('Img/background.png') no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
-  }
-  
-  .background {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-    gap: 20px;
-  }
-  
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-  
-  .slot-container {
-    display: grid;
+  background: url('Img/background.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container, .slot-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin-bottom: 30px;
+}
+
+/*.card, .slot {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}*/
+
+.slot .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  overflow: hidden; /* 카드가 넘치지 않도록 */
+}
+
+.card img, .slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 슬롯 */
+.slot {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  overflow: hidden; /* 카드가 넘치지 않도록 */
+}
+
+.slot-container {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.slot-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.x-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.reset-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.reset-btn img {
+  height: 40px;
+}
+
+.save-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.save-btn img {
+  height: 40px;
+}
+
+@media (max-width: 600px) {
+  .card-container, .slot-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 30px;
-    max-width: 600px;
-    margin-inline: auto;
   }
-  
-  .card, .slot {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border: 2px solid #333;
-    border-radius: 10px;
-    position: relative;
-  }
-  
-  .slot-number {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: rgba(255,255,255,0.7);
-    padding: 2px 5px;
-    border-radius: 4px;
-  }
-  
-  .slot img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
-  
-  .reset-btn, .auto-btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .reset-btn:hover, .auto-btn:hover {
-    background-color: #666;
-  }
-  
-  .x-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    display: none;
-  }
-  
-  .slot.filled .x-btn {
-    display: block;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .card-container, .slot-container {
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-  
-    .card, .slot {
-      width: 80px;
-      height: 80px;
-    }
-  }
+}
