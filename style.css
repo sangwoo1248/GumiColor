@@ -37,7 +37,7 @@ html, body {
   cursor: pointer;
 }
 
-@media (max-width: 992px) {
+@media (min-width: 992px) {
   .mycolor {
     top: 10%;
     width: 70%;
