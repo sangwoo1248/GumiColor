@@ -9,8 +9,14 @@ html, body {
 body {
   background: url('Img/background.png') no-repeat center center fixed;
   background-size: cover;
-  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;              /* ✅ 변경: 고정 높이로 배경 꽉 채움 */
+  position: relative;
+  flex-direction: column;
 }
+
 
 .container {
   min-height: 100%;
