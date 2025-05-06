@@ -1,3 +1,3 @@
 document.getElementById("startBtn").addEventListener("click", () => {
-    window.location.href = "info.html";
-  });
+  window.location.href = "info.html";
+});

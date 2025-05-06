@@ -84,7 +84,21 @@
   }
   
   /* 반응형 미디어 쿼리 */
-  @media (max-width: 600px) {
+  /*@media (max-width: 600px) {
+    .info-img {
+      width: 40vw;
+    }
+  
+    .form-box {
+      padding: 6vw;
+    }
+  
+    .next-button {
+      width: 50%;
+    }
+  }*/
+
+  @media (min-width: 992px){
     .info-img {
       width: 40vw;
     }

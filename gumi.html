@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
     <!-- 카드 -->
     <div class="card-container">
       <div class="card" draggable="true" data-card-number="1"><img src="Img/001.png" alt="Card1"></div>
@@ -26,31 +26,33 @@
     </div>
 
     <!-- 슬롯 -->
-    <div class="slot-container">
-      <div class="slot" data-slot-number="1"><img src="Img/select.png" /><div class="slot-number">1</div></div>
-      <div class="slot" data-slot-number="2"><img src="Img/select.png" /><div class="slot-number">2</div></div>
-      <div class="slot" data-slot-number="3"><img src="Img/select.png" /><div class="slot-number">3</div></div>
-      <div class="slot" data-slot-number="4"><img src="Img/select.png" /><div class="slot-number">4</div></div>
-      <div class="slot" data-slot-number="5"><img src="Img/select.png" /><div class="slot-number">5</div></div>
-      <div class="slot" data-slot-number="6"><img src="Img/select.png" /><div class="slot-number">6</div></div>
-      <div class="slot" data-slot-number="7"><img src="Img/select.png" /><div class="slot-number">7</div></div>
-      <div class="slot" data-slot-number="8"><img src="Img/select.png" /><div class="slot-number">8</div></div>
-      <div class="slot" data-slot-number="9"><img src="Img/select.png" /><div class="slot-number">9</div></div>
-      <div class="slot" data-slot-number="10"><img src="Img/select.png" /><div class="slot-number">10</div></div>
-      <div class="slot" data-slot-number="11"><img src="Img/select.png" /><div class="slot-number">11</div></div>
-      <div class="slot" data-slot-number="12"><img src="Img/select.png" /><div class="slot-number">12</div></div>
-      
+    <div class="slot-scroll-wrapper">
+      <div class="slot-container">
+        <div class="slot" data-slot-number="1"><img src="Img/select.png" /><div class="slot-number">1</div></div>
+        <div class="slot" data-slot-number="2"><img src="Img/select.png" /><div class="slot-number">2</div></div>
+        <div class="slot" data-slot-number="3"><img src="Img/select.png" /><div class="slot-number">3</div></div>
+        <div class="slot" data-slot-number="4"><img src="Img/select.png" /><div class="slot-number">4</div></div>
+        <div class="slot" data-slot-number="5"><img src="Img/select.png" /><div class="slot-number">5</div></div>
+        <div class="slot" data-slot-number="6"><img src="Img/select.png" /><div class="slot-number">6</div></div>
+        <div class="slot" data-slot-number="7"><img src="Img/select.png" /><div class="slot-number">7</div></div>
+        <div class="slot" data-slot-number="8"><img src="Img/select.png" /><div class="slot-number">8</div></div>
+        <div class="slot" data-slot-number="9"><img src="Img/select.png" /><div class="slot-number">9</div></div>
+        <div class="slot" data-slot-number="10"><img src="Img/select.png" /><div class="slot-number">10</div></div>
+        <div class="slot" data-slot-number="11"><img src="Img/select.png" /><div class="slot-number">11</div></div>
+        <div class="slot" data-slot-number="12"><img src="Img/select.png" /><div class="slot-number">12</div></div>
+      </div>
     </div>
 
-    <button class="reset-btn" onclick="resetAll()">
-      <img src="Img/reset.png" alt="Reset" style="height: 40px;">
-    </button>
-    <button class="save-btn" onclick="">
-      <img src="Img/save.png" alt="Save" style="height: 40px;">
-    </button>
-      <!--모바일-->
-      <!--<button id="autoPlace">자동배치</button>-->
-  </div>
+    <div class="button-group">
+      <button class="reset-btn" onclick="resetAll()">
+        <img src="Img/reset.png" alt="Reset">
+      </button>
+      <button class="save-btn" onclick="saveResult()">
+        <img src="Img/save.png" alt="Save">
+      </button>
+      <button class="auto-btn" onclick="autoPlace()">자동배치</button>
+    </div>
+</div>
 
   <script src="gumi.js"></script>
 
