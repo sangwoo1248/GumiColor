@@ -5,12 +5,14 @@ const cardContainer = document.querySelector('.card-container');
 let draggedCard = null;
 let selectedCard = null;
 
+// 카드 드래그 설정
 cards.forEach(card => {
   card.setAttribute('draggable', 'true');
   card.addEventListener('dragstart', handleDragStart);
   card.addEventListener('dragend', handleDragEnd);
 });
 
+// 슬롯 드래그 이벤트
 slots.forEach(slot => {
   slot.addEventListener('dragover', e => e.preventDefault());
   slot.addEventListener('dragenter', handleDragEnter);
@@ -18,6 +20,7 @@ slots.forEach(slot => {
   slot.addEventListener('drop', handleDrop);
 });
 
+// 카드 클릭 선택
 cards.forEach(card => {
   card.addEventListener('click', () => {
     if (selectedCard) selectedCard.classList.remove('selected');
@@ -26,11 +29,11 @@ cards.forEach(card => {
   });
 });
 
+// 슬롯 클릭 시 카드 배치
 slots.forEach(slot => {
   slot.addEventListener('click', () => {
     if (!selectedCard) return;
     if (slot.querySelector('.card')) return;
-    if (slot.dataset.slotNumber !== selectedCard.dataset.cardNumber) return;
 
     slot.appendChild(selectedCard);
     selectedCard.style.position = 'absolute';
@@ -63,14 +66,9 @@ function handleDragLeave() {
   this.style.backgroundColor = '';
 }
 
-// 드롭
 function handleDrop() {
   if (!draggedCard) return;
-
-  const cardNumber = draggedCard.dataset.cardNumber;
-  const slotNumber = this.dataset.slotNumber;
-
-  if (cardNumber !== slotNumber || this.querySelector('.card')) {
+  if (this.querySelector('.card')) {
     this.style.backgroundColor = '';
     return;
   }
@@ -86,7 +84,7 @@ function handleDrop() {
   attachRemoveButton(this, draggedCard);
 }
 
-// 삭제 버튼
+// X 버튼 추가
 function attachRemoveButton(slot, card) {
   removeRemoveButton(slot);
 
@@ -98,12 +96,13 @@ function attachRemoveButton(slot, card) {
   slot.appendChild(btn);
 }
 
+// 기존 X 버튼 제거
 function removeRemoveButton(slot) {
   const existingBtn = slot.querySelector('.x-btn');
   if (existingBtn) existingBtn.remove();
 }
 
-// 카드 원래 자리로 이동
+// 카드 원래 위치로 이동
 function moveCardBack(card, btn) {
   card.removeAttribute('style');
   card.className = 'card';
@@ -120,28 +119,9 @@ function resetAll() {
   });
 }
 
-function autoPlace() {
-  const allCards = Array.from(document.querySelectorAll('.card-container .card'));
-  const allSlots = Array.from(document.querySelectorAll('.slot'));
-
-  allCards.forEach(card => {
-    const cardNumber = card.dataset.cardNumber;
-    const slot = allSlots.find(slot => slot.dataset.slotNumber === cardNumber && !slot.querySelector('.card'));
-    if (slot) {
-      slot.appendChild(card);
-      card.style.position = 'absolute';
-      card.style.top = '0';
-      card.style.left = '0';
-      card.style.width = '100%';
-      card.style.height = '100%';
-      attachRemoveButton(slot, card);
-    }
-  });
-}
-
-// 구글 시트에 결과 전송
+// 저장 기능
 function saveToSheet(cardOrder) {
-  fetch("https://script.google.com/macros/s//exec", { 
+  fetch("https://script.google.com/macros/s/🛠/exec", {  // <-- 실제 Google Apps Script URL로 대체 필요
     method: "POST",
     mode: "no-cors",
     headers: {
@@ -160,14 +140,20 @@ function saveToSheet(cardOrder) {
   });
 }
 
+// 슬롯에 있는 카드 alt로 순서 저장
 function handleSave() {
-  const slotImages = document.querySelectorAll('.slot img');
+  const slots = document.querySelectorAll('.slot');
   const cardOrder = [];
 
-  slotImages.forEach(img => {
-    const alt = img.getAttribute('alt') || '';
-    if (alt.startsWith("Card")) {
-      cardOrder.push(alt.replace("Card", ""));
+  slots.forEach(slot => {
+    const card = slot.querySelector('.card img');
+    if (card) {
+      const alt = card.getAttribute('alt') || '';
+      if (alt.startsWith("Card")) {
+        cardOrder.push(alt.replace("Card", ""));
+      } else {
+        cardOrder.push(alt);
+      }
     } else {
       cardOrder.push("");
     }

@@ -12,121 +12,233 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;              /* ✅ 변경: 고정 높이로 배경 꽉 채움 */
+  height: 100vh;
   position: relative;
   flex-direction: column;
 }
-
 
 .container {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px 100px;
-  box-sizing: border-box;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 20px;
+  background: url('Img/background.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* 카드 영역 - 중앙 정렬 */
+.card-guide {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  background-color: indigo;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-align: center;
+  display: inline-block;
+}
+
+/* 카드 컨테이너 */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   justify-content: center;
-  justify-items: center;
-  margin-bottom: 30px;
-  width: 100%;
-  max-width: 480px;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-/* 슬롯 영역 - 가로 스크롤 + 중앙 정렬 */
-.slot-scroll-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  display: flex;
-  justify-content: center;
+.card {
+  width: 100px;
+  height: 100px;
+  cursor: grab;
 }
 
-.slot-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  width: max-content;
-  justify-content: center;
-  justify-items: center;
-}
-
-/* 카드/슬롯 공통 */
-.card, .slot {
-  width: 80px;
-  height: 80px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card img, .slot img {
+.card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* 슬롯 */
+.slot-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.slot {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .slot-number {
   position: absolute;
   top: 4px;
-  left: 4px;
-  background: rgba(255,255,255,0.8);
+  right: 6px;
+  font-size: 12px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 2px 5px;
-  font-size: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
-/* 버튼 그룹 - 중앙 정렬 */
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.slot img {
   width: 100%;
-  padding: 100px 0;
+  height: 100%;
+  object-fit: cover;
 }
 
-.button-group button {
-  background: none;
+.x-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+  color: white;
   border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
   cursor: pointer;
 }
 
-.button-group img {
-  height: 40px;
-  width: auto;
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
-.auto-btn {
-  background: blue;
-  background-color: blueviolet;
-  color: blueviolet;
+.reset-btn,
+.save-btn {
+  padding: 150px 20px;
+  border: none;
+  border-radius: 8px;
   font-weight: bold;
-  border-radius: 16px;
+  background: none;
+  cursor: pointer;
+  margin-top: -70px;
 }
 
-/* 반응형 모바일 대응 */
-@media (max-width: 600px) {
+.reset-btn img,
+.save-btn img {
+  width: 100px;
+  height: auto;
+}
+
+/* ✅ 반응형: 데스크탑 */
+@media (min-width: 901px) {
   .card-container {
     grid-template-columns: repeat(4, 1fr);
+    gap: 5px; /* 간격 좁게 */
   }
 
   .slot-container {
     grid-template-columns: repeat(4, 1fr);
+    gap: 5px; /* 간격 좁게 */
+  }
+
+  .card,
+  .slot {
+    width: 100px;
+    height: 100px; /* 크기 키움 */
+  }
+
+  .x-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .reset-btn img,
+  .save-btn img {
+    width: 90px;
+  }
+}
+
+/* ✅ 반응형: 태블릿 */
+@media (min-width: 601px) and (max-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px; /* 간격 좁게 */
+  }
+
+  .slot-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px; /* 간격 좁게 */
   }
 
   .card, .slot {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
 
-  .button-group img {
-    height: 32px;
+  .x-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .reset-btn img,
+  .save-btn img {
+    width: 90px;
+    margin-bottom: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .card-guide {
+    font-size: 16px;
+    padding: 8px 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-top: 60px; /* 👈 카드 영역 아래로 */
+  }
+
+  .slot-container {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-top: 40px; /* 👈 슬롯 영역 아래로 */
+  }
+
+  .card,
+  .slot {
+    width: 50px;
+    height: 50px;
+  }
+
+  .x-btn {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+  }
+
+  .reset-btn img,
+  .save-btn img {
+    width: 60px;
+  }
+
+  .slot-number {
+    font-size: 10px;
+    padding: 1px 4px;
   }
 }
