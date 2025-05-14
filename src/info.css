@@ -1,0 +1,136 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay-image {
+  position: absolute;
+  z-index: 1;
+}
+
+/* 정보입력 이미지 (Image-1) 중앙 상단 */
+.info-label {
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40vw;
+  max-width: 300px;
+  min-width: 180px;
+}
+
+/* 입력 폼 영역 */
+.form-container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+  max-width: 300px;
+}
+
+.form-container input {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* NEXT 버튼 */
+.next-button {
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20vw;
+  max-width: 140px;
+  min-width: 100px;
+}
+
+@media (max-width: 767px) {
+  .info-label {
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+  }
+
+  .form-container {
+    top: 35%;
+  }
+
+  .next-button {
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40vw;
+  }
+}
+
+/* ========== 태블릿 (768px ~ 1199px) ========== */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .info-label {
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36vw;
+  }
+
+  .form-container {
+    top: 38%;
+  }
+
+  .next-button {
+    bottom: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28vw;
+  }
+}
+
+/* ========== 데스크탑 (1200px 이상) ========== */
+@media (min-width: 1200px) {
+  .info-label {
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+  }
+
+  .form-container {
+    top: 40%;
+  }
+
+  .next-button {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+  }
+}

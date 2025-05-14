@@ -1,0 +1,105 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.App-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-background {
+    animation: App-background infinite 20s linear;
+  }
+  .App-start {
+    animation: App-start infinite 20s linear;
+  }
+  .App-mycolor {
+    animation: App-mycolor infinite 20s linear;
+  }
+}
+
+.overlay-image {
+  position: absolute;
+  z-index: 1;
+}
+
+/* START 버튼 - 하단 중앙 */
+.App-start {
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16vw;
+  max-width: 140px;
+  min-width: 90px;
+  padding: 180px;
+}
+
+/* MYCOLOR 이미지 - 중앙 상단 */
+.App-mycolor {
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50vw;
+  max-width: 300px;
+  min-width: 180px;
+}
+
+/* 📱 모바일 대응 (최대 767px) */
+@media (max-width: 767px) {
+  .App-start {
+    bottom: 6%;
+    width: 40vw;
+  }
+
+  .App-mycolor {
+    top: 4%;
+    width: 50vw;
+  }
+}
+
+/* 💻 태블릿 이상 (768px ~ 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .App-start {
+    bottom: 8%;
+    width: 18vw;
+  }
+
+  .App-mycolor {
+    top: 6%;
+    width: 28vw;
+  }
+}
+
+/* 🖥 데스크탑 이상 (1200px~) */
+@media (min-width: 1200px) {
+  .App-start {
+    bottom: 10%;
+    width: 120px;
+  }
+
+  .App-mycolor {
+    top: 8%;
+    width: 150px;
+  }
+}
