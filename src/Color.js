@@ -105,7 +105,7 @@ function Color() {
     const slotData = slots.map((slot) => (slot ? `card-${slot.id}` : ""));
 
     const res = await fetch(
-      "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycby1A_OIKxUpbJ-ORVrJhcoPL2Zs5gTpvWYoJORBozERCo28nR4GObhONfet2rR66o9x/exec기/exec",
+      "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbyxJ1UIx1b5oKQvomQ4lga0tAlgd4j1Kv9rmqMN4U5_JiAw1U0ob5LkX5QRZnQOzqoj/exec/exec",
       {
         method: "POST",
         body: JSON.stringify({ slots: slotData }),
