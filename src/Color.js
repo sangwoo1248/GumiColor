@@ -106,7 +106,7 @@ function Color() {
 
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbzCy2AXloFnWzHpLdOPvZCOt-xyjqyGMPS_U0aKMB_ZQ36koS_bI--rrnh7J9EDpzWX/exec",
+        "https://script.google.com/macros/s/AKfycbwc3UKqVsDpCnLmhKp0RVP8BdBhPsWt3IvlK2cOSFpyiwlKeCtsNcOAkkavo56iBvBn/exec",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -118,7 +118,7 @@ function Color() {
       if (res.ok) {
         alert("저장되었습니다: " + text);
       } else {
-        alert("실패: " + text);
+        alert("저장 실패: " + text);
       }
     } catch (err) {
       alert("오류 발생: " + err.message);
