@@ -96,7 +96,7 @@ function Color() {
 
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbxyXJ4JgXOYx8YPwAkrV9rSeQ2_bBtO92Wz-UNK_GBD9vjqgT8ChkrDOmnll-eGEYm5/exec",
+        "https://script.google.com/macros/s/AKfycby7879_OMi7R2FzbQA1uqpn5hF2ijRNosYLD7dUsl6yB0sEg2cbgPkRN2mAt4fP3E5Q/exec",
         {
           method: "POST",
           headers: {
