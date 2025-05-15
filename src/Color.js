@@ -38,29 +38,24 @@ function Color() {
   const [slots, setSlots] = useState(Array(12).fill(null));
   const draggedCardId = useRef(null);
 
-  // 🔹 드래그 시작
   const handleDragStart = (e, cardId) => {
     draggedCardId.current = cardId;
     e.dataTransfer.setData("cardId", cardId);
   };
 
-  // 🔹 드롭 허용
   const allowDrop = (e) => {
     e.preventDefault();
   };
 
-  // 🔹 드롭 처리
   const handleDrop = (e, slotIdx) => {
     const cardId = parseInt(e.dataTransfer.getData("cardId"));
     insertCardToSlot(cardId, slotIdx);
   };
 
-  // 🔹 터치 시작
   const handleTouchStart = (cardId) => {
     draggedCardId.current = cardId;
   };
 
-  // 🔹 터치 종료 시 슬롯에 삽입
   const handleTouchEnd = (slotIdx) => {
     if (draggedCardId.current !== null) {
       insertCardToSlot(draggedCardId.current, slotIdx);
@@ -68,7 +63,6 @@ function Color() {
     }
   };
 
-  // 🔹 카드 삽입 공통 함수
   const insertCardToSlot = (cardId, slotIdx) => {
     const card = cards.find((c) => c.id === cardId);
     if (!card || slots[slotIdx]) return;
@@ -81,13 +75,22 @@ function Color() {
     setCards(updatedCards);
   };
 
-  // 🔹 카드 리셋
-  const resetAll = () => {
-    setCards(initialCards);
-    setSlots(Array(6).fill(null));
+  const removeCardFromSlot = (slotIdx) => {
+    const card = slots[slotIdx];
+    if (!card) return;
+
+    const updatedSlots = [...slots];
+    updatedSlots[slotIdx] = null;
+    setSlots(updatedSlots);
+
+    setCards((prev) => [...prev, card].sort((a, b) => a.id - b.id)); // 카드 순서 복구
   };
 
-  // 저장
+  const resetAll = () => {
+    setCards(initialCards);
+    setSlots(Array(12).fill(null));
+  };
+
   const saveToSheet = async () => {
     const slotData = slots.map((slot) => (slot ? `card-${slot.id}` : ""));
 
@@ -96,7 +99,9 @@ function Color() {
         "https://script.google.com/macros/s/AKfycbxyXJ4JgXOYx8YPwAkrV9rSeQ2_bBtO92Wz-UNK_GBD9vjqgT8ChkrDOmnll-eGEYm5/exec",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ slots: slotData }),
         }
       );
@@ -117,10 +122,9 @@ function Color() {
       <div className="background-container">
         <img src={background} alt="background" className="background-image" />
 
-        <div className="card-slot-container">
-          <div className="guide-text">카드를 선택해주세요</div>
+        <div className="guide-text">카드를 선택해주세요</div>
 
-          {/* 카드 영역 */}
+        <div className="card-slot-container">
           <div className="card-grid">
             {cards.map((card) => (
               <img
@@ -135,7 +139,6 @@ function Color() {
             ))}
           </div>
 
-          {/* 슬롯 영역 */}
           <div className="slot-grid">
             {slots.map((slot, idx) => (
               <div
@@ -146,11 +149,19 @@ function Color() {
                 onTouchEnd={() => handleTouchEnd(idx)}
               >
                 {slot ? (
-                  <img
-                    src={slot.img}
-                    alt={`slot-card-${idx}`}
-                    className="card-in-slot"
-                  />
+                  <div className="slot-card-wrapper">
+                    <img
+                      src={slot.img}
+                      alt={`slot-card-${idx}`}
+                      className="card-in-slot"
+                    />
+                    <button
+                      className="x-button"
+                      onClick={() => removeCardFromSlot(idx)}
+                    >
+                      ×
+                    </button>
+                  </div>
                 ) : (
                   <img src={slotImg} alt={`slot-${idx}`} className="slot-img" />
                 )}
@@ -158,7 +169,6 @@ function Color() {
             ))}
           </div>
 
-          {/* 버튼 영역 */}
           <div className="button-group">
             <img
               src={resetImg}

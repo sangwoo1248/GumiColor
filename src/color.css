@@ -98,6 +98,32 @@ body {
   cursor: pointer;
 }
 
+.slot-card-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* X 버튼 기본 스타일 */
+.x-button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* X 버튼 hover 시 진해짐 */
+.x-button:hover {
+  background-color: #d11a1a;
+}
+
 /* 모바일 */
 @media (max-width: 767px) {
   .card-grid {
