@@ -104,19 +104,24 @@ function Color() {
   const saveToSheet = async () => {
     const slotData = slots.map((slot) => (slot ? `card-${slot.id}` : ""));
 
-    const res = await fetch(
-      "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbyxJ1UIx1b5oKQvomQ4lga0tAlgd4j1Kv9rmqMN4U5_JiAw1U0ob5LkX5QRZnQOzqoj/exec/exec",
-      {
-        method: "POST",
-        body: JSON.stringify({ slots: slotData }),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbzCy2AXloFnWzHpLdOPvZCOt-xyjqyGMPS_U0aKMB_ZQ36koS_bI--rrnh7J9EDpzWX/exec",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ slots: slotData }),
+        }
+      );
 
-    if (res.ok) {
-      alert("저장되었습니다!");
-    } else {
-      alert("저장 실패!");
+      const text = await res.text();
+      if (res.ok) {
+        alert("저장되었습니다: " + text);
+      } else {
+        alert("실패: " + text);
+      }
+    } catch (err) {
+      alert("오류 발생: " + err.message);
     }
   };
 
