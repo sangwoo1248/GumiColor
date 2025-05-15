@@ -17,19 +17,6 @@ import saveImg from "./save.png";
 import { useState, useRef } from "react";
 import "./color.css";
 
-/*<img src={card1} alt="001" className="overlay-image card1" />
-        <img src={card2} alt="002" className="overlay-image card2" />
-        <img src={card3} alt="003" className="overlay-image card3" />
-        <img src={card4} alt="004" className="overlay-image card4" />
-        <img src={card5} alt="005" className="overlay-image card5" />
-        <img src={card6} alt="006" className="overlay-image card6" />
-        <img src={card7} alt="007" className="overlay-image card7" />
-        <img src={card8} alt="008" className="overlay-image card8" />
-        <img src={card9} alt="009" className="overlay-image card9" />
-        <img src={card10} alt="010" className="overlay-image card10" />
-        <img src={card11} alt="011" className="overlay-image card11" />
-        <img src={card12} alt="012" className="overlay-image card12" />*/
-
 function Color() {
   const cardImages = [
     card1,
@@ -106,7 +93,7 @@ function Color() {
 
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbwc3UKqVsDpCnLmhKp0RVP8BdBhPsWt3IvlK2cOSFpyiwlKeCtsNcOAkkavo56iBvBn/exec",
+        "https://script.google.com/macros/s/AKfycbxyXJ4JgXOYx8YPwAkrV9rSeQ2_bBtO92Wz-UNK_GBD9vjqgT8ChkrDOmnll-eGEYm5/exec",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
